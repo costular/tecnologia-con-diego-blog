@@ -1,0 +1,30 @@
+{
+  "name": "tediego-blog",
+  "description": "Blog de Técnologia con Diego",
+  "version": "2.8.1",
+  "private": true,
+  "dependencies": {
+    "@nuxtjs/axios": "5.5.4",
+    "fast-glob": "^3.0.2",
+    "nuxt": "2.8.1",
+    "nuxt-property-decorator": "2.3.0",
+    "ts-node": "8.3.0",
+    "vuex-class": "0.3.2"
+  },
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "devDependencies": {
+    "@nuxt/typescript": "2.8.1",
+    "@types/node": "10.14.10",
+    "@types/webpack-env": "1.13.9",
+    "autoprefixer": "^9.6.0",
+    "dotenv": "^8.0.0",
+    "glob-all": "^3.1.0",
+    "purgecss-webpack-plugin": "^1.5.0",
+    "tailwindcss": "^1.0.4"
+  }
+}
