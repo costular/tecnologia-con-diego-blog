@@ -1,7 +1,8 @@
 require('dotenv').config()
 import PurgecssPlugin from 'purgecss-webpack-plugin';
-import glob from 'fast-glob';
-import path from 'path';
+import glob from 'fast-glob'
+import path from 'path'
+import axios from 'axios'
 
 class TailwindExtractor {
   static extract(content: string) {
