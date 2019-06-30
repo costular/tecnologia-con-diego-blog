@@ -1,25 +1,44 @@
 <template>
   <section>
     <article class="my-8">
-      <div class="text-grey-dark font-bold text-sm tracking-wide">
-        <a
-          v-for="(tag, key) in post.tags"
-          :key="key"
-          :href="'/category/'+tag"
-          class="ml-1 no-underline"
-        >{{ tag }}</a>
-      </div>
       <h1 class="title">{{ post.title }}</h1>
-      <div class="mt-4 markdown" v-html="$options.filters.parseMd(post.excerpt + '\n' + post.content)"></div>
+      <div class="text-grey-dark font-bold text-sm tracking-wide">
+        <tag
+          v-for="(tag, key) in post.tags"
+          v-bind:tag="tag"
+          :key="key"
+        />
+      </div>
+
+      <div
+        class="mt-4 markdown"
+        v-html="$options.filters.parseMd(post.excerpt + '\n' + post.content)"
+      ></div>
     </article>
   </section>
 </template>
 <script lang="ts">
 import { Vue, Component } from "nuxt-property-decorator";
+import Tag from "~/components/Tag.vue";
 import axios from "axios";
 
 @Component({
-  async asyncData({ app, params, error, payload }) {
+  components: {
+    Tag
+  }
+})
+export default class extends Vue {
+  async asyncData({
+    app,
+    params,
+    error,
+    payload
+  }: {
+    app: any;
+    params: any;
+    error: any;
+    payload: any;
+  }) {
     if (payload) {
       return { post: payload };
     } else {
@@ -42,6 +61,5 @@ import axios from "axios";
       return { post: data.entries[0] };
     }
   }
-})
-export default class extends Vue {}
+}
 </script>

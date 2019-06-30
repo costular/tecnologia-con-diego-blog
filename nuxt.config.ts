@@ -14,7 +14,7 @@ class TailwindExtractor {
 export default {
   env: {},
   head: {
-    title: "tediego-blog",
+    title: "Técnologia con Diego",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -112,6 +112,36 @@ export default {
   },
   modules: [
     "@nuxtjs/axios",
+    "@nuxtjs/sitemap"
   ],
-  axios: {}
+  axios: {},
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: process.env.URL,
+    cacheTime: 1000 * 60 * 15,
+    generate: true, // Enable me when using nuxt generate
+    async routes () {
+      let { data } = await axios.post(<string>process.env.POSTS_URL,
+      JSON.stringify({
+          filter: { published: true },
+          sort: {_created:-1},
+          populate: 1
+        }),
+      {
+        headers: { 'Content-Type': 'application/json' }
+      })
+  
+      const collection = collect(data.entries)
+  
+      let tags = collection.map((post: any): any => post.tags)
+      .flatten()
+      .unique()
+      .map((tag: any): any => `category/${tag}`)
+      .all()
+  
+      let posts = collection.map((post: any): any => post.title_slug).all()
+  
+      return posts.concat(tags)
+    }
+  }
 }
