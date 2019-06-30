@@ -3,6 +3,7 @@ import PurgecssPlugin from 'purgecss-webpack-plugin';
 import glob from 'fast-glob'
 import path from 'path'
 import axios from 'axios'
+const collect = require('collect.js');
 
 class TailwindExtractor {
   static extract(content: string) {
@@ -23,8 +24,52 @@ export default {
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }
     ]
   },
+  plugins: [
+    "~/plugins/filters.ts"
+  ],
   loading: { color: "#3B8070" },
-  css: ["~/assets/css/main.css"],
+  css: [
+    "~/assets/css/main.css",
+    "highlight.js/styles/dracula.css"
+  ],
+  generate: {
+    routes: async () => {
+      let { data } = await axios.post(<string>process.env.POSTS_URL,
+        JSON.stringify({
+          filter: { published: true },
+          sort: { _created: -1 },
+          populate: 1
+        }),
+        {
+          headers: { 'Content-Type': 'application/json' }
+        })
+
+      const collection = collect(data.entries)
+
+      let tags = collection.map((post: any): any => post.tags)
+        .flatten()
+        .unique()
+        .map((tag: any): any => {
+          let payload = collection.filter((item: any): any => {
+            return collect(item.tags).contains(tag)
+          }).all()
+
+          return {
+            route: `category/${tag}`,
+            payload: payload
+          }
+        }).all()
+
+      let posts = collection.map((post: any): any => {
+        return {
+          route: post.title_slug,
+          payload: post
+        }
+      }).all()
+
+      return posts.concat(tags)
+    }
+  },
   build: {
     extractCSS: true,
     /*
@@ -63,10 +108,10 @@ export default {
           })
         )
       }
-    },
-    modules: [
-      "@nuxtjs/axios",
-    ],
-    axios: {}
-  }
+    }
+  },
+  modules: [
+    "@nuxtjs/axios",
+  ],
+  axios: {}
 }

@@ -5,6 +5,8 @@
   "private": true,
   "dependencies": {
     "@nuxtjs/axios": "5.5.4",
+    "@types/highlight.js": "^9.12.3",
+    "@types/marked": "^0.6.5",
     "fast-glob": "^3.0.2",
     "nuxt": "2.8.1",
     "nuxt-property-decorator": "2.3.0",
@@ -19,11 +21,15 @@
   },
   "devDependencies": {
     "@nuxt/typescript": "2.8.1",
+    "@nuxtjs/sitemap": "^1.2.0",
     "@types/node": "10.14.10",
     "@types/webpack-env": "1.13.9",
     "autoprefixer": "^9.6.0",
+    "collect.js": "^4.12.5",
     "dotenv": "^8.0.0",
     "glob-all": "^3.1.0",
+    "highlight.js": "^9.15.8",
+    "marked": "^0.6.2",
     "purgecss-webpack-plugin": "^1.5.0",
     "tailwindcss": "^1.0.4"
   }

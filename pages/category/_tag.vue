@@ -1,12 +1,13 @@
 <template>
   <section>
     <div class="my-8">
+      <h1 class="mb-6">Posts tagged with "{{ category }}"</h1>
       <ul class="flex flex-col w-full p-0">
         <li class="mb-6 w-full list-reset" v-for="(post, key) in posts" :key="key">
           <div class="text-grey-dark font-bold text-sm tracking-wide">
             <a
-              v-for="tag in post.tags"
-              :key="tag"
+              v-for="(tag, key) in post.tags"
+              :key="key"
               :href="'/category/'+tag"
               class="ml-1 no-underline"
             >{{ tag }}</a>
@@ -23,26 +24,31 @@
     </div>
   </section>
 </template>
-
 <script lang="ts">
-import { Vue, Component } from "nuxt-property-decorator";
-import axios from "axios";
+import { Vue, Component } from "nuxt-property-decorator"
+import axios from "axios"
 
 @Component({
-  async asyncData() {
-    const { data } = await axios.post(
-      <string>process.env.POSTS_URL,
+    async asyncData ({ app, params, error, payload }) {
+    if (payload) {
+      return { posts: payload, category: params.tag }
+    } else {
+      let { data } = await axios.post(<string>process.env.POSTS_URL,
       JSON.stringify({
-        filter: { published: true },
-        sort: { _created: -1 },
-        populate: 1
-      }),
+          filter: { published: true, tags: { $has:params.tag } },
+          sort: {_created:-1},
+          populate: 1
+        }),
       {
-        headers: { "Content-Type": "application/json" }
-      }
-    );
+        headers: { 'Content-Type': 'application/json' }
+      })
 
-    return { posts: data.entries };
+      if (!data.entries[0]) {
+        return error({ message: '404 Page not found', statusCode: 404 })
+      }
+
+      return { posts: data.entries, category: params.tag }
+    }
   }
 })
 export default class extends Vue {}
