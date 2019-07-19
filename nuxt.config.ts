@@ -25,12 +25,14 @@ export default {
     ]
   },
   plugins: [
-    "~/plugins/filters.ts"
+    "~/plugins/filters.ts",
+    "~/plugins/fontawesome.ts"
   ],
   loading: { color: "#3B8070" },
   css: [
     "~/assets/css/main.css",
-    "highlight.js/styles/dracula.css"
+    "highlight.js/styles/dracula.css",
+    "@fortawesome/fontawesome-svg-core/styles.css"
   ],
   generate: {
     routes: async () => {
