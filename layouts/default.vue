@@ -4,9 +4,9 @@
     <div class="flex flex-row justify-center w-screen">
       <div class="overflow-hidden content flex flex-col">
         <nuxt />
-        <page-footer />
       </div>
     </div>
+    <page-footer />
   </div>
 </template>
 <script>

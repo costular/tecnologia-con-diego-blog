@@ -12,7 +12,7 @@
 
       <div
         class="mt-4 markdown"
-        v-html="$options.filters.parseMd(post.excerpt + '\n' + post.content)"
+        v-html="$options.filters.parseMd(post.content)"
       ></div>
     </article>
   </section>
@@ -21,6 +21,7 @@
 import { Vue, Component } from "nuxt-property-decorator";
 import Tag from "~/components/Tag.vue";
 import axios from "axios";
+import ImageGetter from "~/util/ImageGetter.ts"
 
 @Component({
   components: {
@@ -28,6 +29,11 @@ import axios from "axios";
   }
 })
 export default class extends Vue {
+
+  getImageUrl(): string {
+    return ImageGetter.getAbsolutePath(this.post.image.path)
+  }
+
   async asyncData({
     app,
     params,
@@ -61,5 +67,6 @@ export default class extends Vue {
       return { post: data.entries[0] };
     }
   }
+
 }
 </script>

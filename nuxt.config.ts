@@ -21,7 +21,8 @@ export default {
       { hid: "description", name: "description", content: "Blog de Técnologia con Diego" }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato&display=swap' }
     ]
   },
   plugins: [
