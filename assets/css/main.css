@@ -1,41 +1,63 @@
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
 
-a {
+#article-content a {
   @apply text-primary;
 }
 
+#article-content a:hover {
+  @apply text-primary underline;
+}
+
 .content {
-    width: 50rem;
-  }
-  
-  .markdown p {
-    @apply mt-0 mb-6;
-  }
-  
-  .markdown ul {
-    @apply mb-6;
-  }
-  
-  pre {
-    @apply my-8;
-  }
+  width: 50rem;
+}
 
-  h1 {
-    @apply font-serif break-normal font-bold pt-6 pb-2 text-4xl;
-  }
+.markdown p {
+  @apply mt-0 mb-6;
+}
 
-  h2 {
-    @apply font-serif break-normal font-bold pt-6 pb-2 text-3xl;
-  }
+.markdown ul {
+  @apply mb-6;
+}
 
-  .title {
-    @apply font-serif font-sans break-normal font-extrabold pt-6 pb-2 text-5xl;
-  }
+pre {
+  @apply my-8;
+}
 
-  .tag {
-    @apply inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2
-  }
+h1 {
+  @apply font-serif break-normal font-bold pt-6 pb-2 text-4xl;
+}
+
+h2 {
+  @apply font-serif break-normal font-bold pt-6 pb-2 text-3xl;
+}
+
+.title {
+  @apply font-serif font-sans break-normal font-extrabold pt-6 pb-2 text-5xl;
+}
+
+.tag {
+  @apply inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2
+}
+
+.social-icon {
+  @apply rounded-full mx-4 h-12 w-12 flex items-center justify-center
+}
+
+.facebook {
+  background: #1877f2;
+}
+
+.twitter {
+  background: #1da1f2;
+}
+
+.instagram {
+  background: #c32aa3;
+}
+
+footer a {
+  @apply underline
+}

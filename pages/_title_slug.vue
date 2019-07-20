@@ -3,14 +3,11 @@
     <article class="my-8">
       <h1 class="title">{{ post.title }}</h1>
       <div class="text-grey-dark font-bold text-sm tracking-wide">
-        <tag
-          v-for="(tag, key) in post.tags"
-          v-bind:tag="tag"
-          :key="key"
-        />
+        <tag v-for="(tag, key) in post.tags" v-bind:tag="tag" :key="key" />
       </div>
 
       <div
+        id="article-content"
         class="mt-4 markdown"
         v-html="$options.filters.parseMd(post.content)"
       ></div>
@@ -21,7 +18,7 @@
 import { Vue, Component } from "nuxt-property-decorator";
 import Tag from "~/components/Tag.vue";
 import axios from "axios";
-import ImageGetter from "~/util/ImageGetter.ts"
+import ImageGetter from "~/util/ImageGetter.ts";
 
 @Component({
   components: {
@@ -29,9 +26,8 @@ import ImageGetter from "~/util/ImageGetter.ts"
   }
 })
 export default class extends Vue {
-
   getImageUrl(): string {
-    return ImageGetter.getAbsolutePath(this.post.image.path)
+    return ImageGetter.getAbsolutePath(this.post.image.path);
   }
 
   async asyncData({
@@ -67,6 +63,5 @@ export default class extends Vue {
       return { post: data.entries[0] };
     }
   }
-
 }
 </script>

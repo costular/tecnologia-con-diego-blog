@@ -1,7 +1,9 @@
 <template>
-  <a :href="'/category/'+tag"><span
+  <!-- <a :href="'/category/'+tag">-->
+  <span
     class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-  >#{{tag}}</span></a>
+  >#{{tag}}</span>
+  <!--</a>-->
 </template>
 
 <script lang="ts">
