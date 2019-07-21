@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import highlightjs from 'highlight.js'
 import marked, { Renderer } from 'marked'
+import * as moment from "moment"
+import ImageGetter from "~/util/ImageGetter.ts"
+import TimeReadingHelper from "~/util/TimeReading.ts"
 
 // Only import the languages that you need to keep our js bundle small
 highlightjs.registerLanguage('php', require('highlight.js/lib/languages/php'))
@@ -28,4 +31,13 @@ marked.setOptions({ renderer })
 
 Vue.filter('parseMd', function(content: string): string {
     return marked(content)
+})
+
+Vue.filter('toDate', function(timestamp: number): string {
+  return moment.unix(timestamp).format("D MMM YYYY")
+})
+
+Vue.filter('readingTime', function(content: string): string {
+  const minsReading = TimeReadingHelper.calculateReadingTime(content)
+  return `${minsReading} mins lectura`
 })

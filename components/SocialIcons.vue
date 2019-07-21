@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-row justify-center">
-    <div class="social-icon facebook"></div>
-    <div class="social-icon twitter"></div>
-    <div class="social-icon instagram"></div>
+    <a target="_blank" href="https://www.facebook.com/Técnologia-con-Diego-849431212095891"><div class="social-icon facebook"></div></a>
+    <a target="_blank" href="https://www.twitter.com/tecnologiadiego"><div class="social-icon twitter"></div></a>
+    <a target="_blank" href="https://www.instagram.com/tecnologiacondiego"><div class="social-icon instagram"></div></a>
   </div>
 </template>
 <script language="ts">

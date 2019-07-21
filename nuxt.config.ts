@@ -33,7 +33,8 @@ export default {
   css: [
     "~/assets/css/main.css",
     "highlight.js/styles/dracula.css",
-    "@fortawesome/fontawesome-svg-core/styles.css"
+    "@fortawesome/fontawesome-svg-core/styles.css",
+    "@nuxtjs/google-adsense"
   ],
   generate: {
     routes: async () => {
@@ -117,6 +118,9 @@ export default {
     "@nuxtjs/axios",
     "@nuxtjs/sitemap"
   ],
+  "google-adsense": {
+    id: 'UA-144246775-1'
+  },
   axios: {},
   sitemap: {
     path: '/sitemap.xml',
