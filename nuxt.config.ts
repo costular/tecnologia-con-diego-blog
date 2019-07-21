@@ -116,10 +116,11 @@ export default {
   },
   modules: [
     "@nuxtjs/axios",
-    "@nuxtjs/sitemap"
+    "@nuxtjs/sitemap",
+    "@nuxtjs/google-analytics"
   ],
-  "google-adsense": {
-    id: 'UA-144246775-1'
+  googleAnalytics: {
+    id: "UA-144246775-1"
   },
   axios: {},
   sitemap: {

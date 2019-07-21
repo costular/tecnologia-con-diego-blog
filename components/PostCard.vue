@@ -7,7 +7,7 @@
     <div class="mb-8">
       <p class="text-sm text-gray-600 flex items-center">{{ post._created | toDate }} · {{ this.post.content | readingTime }}</p>
       <div class="text-gray-900 font-bold text-xl mb-2">{{ post.title }}</div>
-      <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
+      <p class="text-gray-700 text-base">{{ post.excerpt }}</p>
     </div>
   </div>
 </div>
